@@ -1,0 +1,193 @@
+parser grammar ExprParser;
+options { tokenVocab=ExprLexer; }
+
+program
+    : (
+        stmt | funcdef
+    )* EOF
+    ;
+
+funcdef
+    : DEF ID parameters COLON block
+    ;
+
+parameters
+    : OPEN_PAREN typedargslist? CLOSE_PAREN
+    ;
+
+typedargslist
+    : ID (COMMA ID ?)*
+    ;
+
+block
+    : INDENT stmt+ DEDENT
+    ;
+    
+stmt
+    : simple_stmts
+    | compound_stmt
+    ;
+    
+simple_stmts
+    : simple_stmt (SEMI_COLON simple_stmt)* SEMI_COLON?
+    ;
+    
+simple_stmt
+    : (
+        expr_stmt
+        | flow_stmt
+    )
+    ;
+    
+expr_stmt
+    : testlist_star_expr (ASSIGN testlist_star_expr)*
+    ;
+    
+testlist_star_expr
+    : test (COMMA test)* COMMA?
+    ;
+    
+flow_stmt
+    : BREAK
+    | CONTINUE
+    | RETURN testlist?
+    | RAISE test?
+    ;
+    
+compound_stmt
+    : if_stmt
+    | while_stmt
+    | for_stmt
+    | try_stmt
+    | funcdef
+    | switch_stmt
+    ;
+    
+if_stmt
+    : IF test COLON block (ELSE COLON block)?
+    ;
+
+while_stmt
+    : WHILE test COLON block
+    ;
+
+for_stmt
+    : FOR exprlist IN testlist COLON block
+    ;
+
+try_stmt
+    : (
+        TRY COLON block (
+            (except_clause COLON block)+ (FINALLY COLON block)?
+            | FINALLY COLON block
+        )
+    )
+    ;
+
+except_clause
+    : EXCEPT test?
+    ;
+
+switch_stmt
+    : SWITCH test COLON INDENT case_block+ DEDENT
+    ;
+
+case_block
+    : CASE pattern COLON block
+    ;
+
+pattern
+    : closed_pattern+
+    ;
+
+closed_pattern
+    : literal_pattern
+    | value_pattern
+    ;
+
+literal_pattern
+    : real_number
+    | strings
+    | NONE
+    | TRUE
+    | FALSE
+    ;
+
+real_number
+    : NUMBER
+    ;
+
+value_pattern
+    : attr
+    ;
+
+attr
+    : ID (DOT ID)*
+    ;
+    
+test
+    : and_test (OR and_test)*
+    ;
+
+and_test
+    : not_test (AND not_test)*
+    ;
+
+not_test
+    : NOT not_test
+    | comparison
+    ;
+
+comparison
+    : expr (comp_op expr)*
+    ;
+
+comp_op
+    : EQUALS
+    | NOT_EQ_2
+    | IN
+    | NOT IN
+    ;
+
+expr
+    : atom_expr
+    ;
+
+atom_expr
+    : atom trailer*
+    ;
+
+atom
+    : ID
+    | NUMBER
+    | STRING+
+    | NONE
+    | TRUE
+    | FALSE
+    ;
+
+trailer
+    : OPEN_PAREN arglist? CLOSE_PAREN
+    | OPEN_BRACK test CLOSE_BRACK
+    | DOT ID
+    ;
+
+exprlist
+    : expr (COMMA expr)* COMMA?
+    ;
+
+testlist
+    : test (COMMA test)* COMMA?
+    ;
+
+arglist
+    : argument (COMMA argument)* COMMA?
+    ;
+
+argument
+    : test
+    ;
+
+strings
+    : STRING+
+    ;

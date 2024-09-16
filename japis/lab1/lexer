@@ -1,0 +1,75 @@
+lexer grammar XMLLangLexer;
+
+
+tokens {
+    
+}
+
+INDENT : 'INDENT';
+DEDENT : 'DEDENT';
+    
+
+STRING: '"' ( STRING_ESCAPE_SEQ | ~[\\\r\n\f"])* '"';
+
+NUMBER: INTEGER;
+
+INTEGER: DECIMAL_INTEGER;
+
+AND        : 'and';
+BREAK      : 'break';
+CASE       : 'case';
+CONTINUE   : 'continue';
+DEF        : 'def';
+ELSE       : 'else';
+EXCEPT     : 'except';
+FALSE      : 'False';
+FINALLY    : 'finally';
+FOR        : 'for';
+IF         : 'if';
+IN         : 'in';
+SWITCH     : 'switch';
+NONE       : 'None';
+NOT        : 'not';
+OR         : 'or';
+RAISE      : 'raise';
+RETURN     : 'return';
+TRUE       : 'True';
+TRY        : 'try';
+WHILE      : 'while';
+
+WS: [ \t\n\r\f]+ -> skip ;
+
+NEWLINE: SPACES | ( '\r'? '\n' | '\r' | '\f') SPACES?;
+
+ID: [a-zA-Z_][a-zA-Z_0-9]* ;
+
+DECIMAL_INTEGER: NON_ZERO_DIGIT DIGIT* | '0'+;
+
+
+DOT                : '.';
+OPEN_PAREN         : '(' {this.openBrace();};
+CLOSE_PAREN        : ')' {this.closeBrace();};
+OPEN_BRACK         : '[' {this.openBrace();};
+CLOSE_BRACK        : ']' {this.closeBrace();};
+COMMA              : ',';
+COLON              : ':';
+SEMI_COLON         : ';';
+ASSIGN             : '=';
+ADD                : '+';
+MINUS              : '-';
+EQUALS             : '==';
+NOT_EQ_2           : '!=';
+
+
+UNKNOWN_CHAR: .;
+
+fragment STRING_ESCAPE_SEQ: '\\' . | '\\' NEWLINE;
+
+fragment NON_ZERO_DIGIT: [1-9];
+
+fragment DIGIT: [0-9];
+
+fragment SPACES: [ \t]+;
+
+fragment COMMENT: '#' ~[\r\n\f]*;
+

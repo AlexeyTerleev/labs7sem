@@ -1,0 +1,30 @@
+
+read() -> string
+parseXML(string) -> Document
+write(string) -> None
+
+createNode(string) -> Node
+
+
+type Document:
+    root: Node
+
+type Node:
+    name: string
+    value: string
+    attributes: Dict[string, Attribute]
+
+    children: List[Node]
+
+    children() -> List[Node]
+    appendChild(childNode) -> None
+    popChild(childNode) -> Node
+    getAttribute(attrName) -> Attribute
+    setAttribute(attrName, attrValue) -> None
+
+type Attribute:
+    name: string
+    value: string
+
+type string:
+    value: string

@@ -1,0 +1,44 @@
+def func(a, b):
+INDENT
+    def func(a, b):
+    INDENT
+        a = b
+    DEDENT
+    try:
+    INDENT
+        if a == b or a != b or a in b and a not in b:
+        INDENT
+            while a == b or a != b or a in b and a not in b:
+            INDENT
+                a = b
+            DEDENT
+        DEDENT
+        else:
+        INDENT
+            for a, b in c:
+            INDENT
+                a = b
+            DEDENT
+        DEDENT
+    DEDENT
+    except:
+    INDENT
+        a = b
+    DEDENT
+    return a
+DEDENT
+
+def func(a, b):
+INDENT
+    switch 1:
+    INDENT
+        case 1:
+            INDENT
+                return b
+            DEDENT
+        case test:
+            INDENT
+                return b
+            DEDENT
+    DEDENT
+DEDENT
