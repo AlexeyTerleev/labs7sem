@@ -1,0 +1,74 @@
+grammar XMLLang;
+
+program
+    : functionDef* statement* EOF
+    ;
+
+functionDef
+    : 'def' ID LPAREN paramList? RPAREN COLON NEWLINE INDENT statement* DEDENT
+    ;
+
+paramList
+    : param (',' param)*
+    ;
+
+param
+    : ID 
+    ;
+
+statement
+    : assignment
+    | blockStatement
+    | functionCall
+    | ifStatement
+    | switchStatement
+    | returnStatement
+    ;
+
+assignment
+    : ID (',' ID)* '=' expr (',' expr)* NEWLINE
+    ;
+
+blockStatement
+    : ifStatement
+    | switchStatement
+    ;
+
+ifStatement
+    : 'if' expr COLON NEWLINE INDENT statement* DEDENT
+    ;
+
+switchStatement
+    : 'switch' expr COLON NEWLINE INDENT caseStatement* defaultStatement? DEDENT
+    ;
+
+caseStatement
+    : 'case' expr COLON NEWLINE INDENT statement* DEDENT
+    ;
+
+defaultStatement
+    : 'default' COLON NEWLINE INDENT statement* DEDENT
+    ;
+
+functionCall
+    : ID LPAREN argList? RPAREN NEWLINE
+    ;
+
+argList
+    : expr (',' expr)*
+    ;
+
+returnStatement
+    : 'return' expr NEWLINE
+    ;
+
+expr
+    : literal
+    | functionCall
+    | ID
+    ;
+
+literal
+    : STRING
+    ;
+

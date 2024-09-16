@@ -1,0 +1,124 @@
+; Язык для работы с xml данными
+; 1: Встроенные типы: document, node, attribute
+; 2: Встроенные функции поиска и преобразования
+
+
+; Требования к разрабатываемому языку
+; 1: Встроенные типы не менее трех
+; 2: Возможность инициализация переменных всех типов при объявлении: <имя_переменной> = <выражение>
+;       2.1: Инициализирующее выражение может быть константным
+; 3: Встроенные операции не менее 10 штук
+; 4: Встроенные функции
+;       4.1: Встроенные функции ввода\вывода для работы со встроенными типами read() write()
+; 5: Использование сложных выражений (составных и со скобками)
+; 6: Блочный оператор
+; 7: Управляющие структуры
+;       7.1: Условный оператор (if-then-else)
+;       7.2: Операторы цикла (while и until)
+;       7.3: Оператор цикла с итерациями (for)
+; 8: Пользовательские подпрограммы
+;       8.1: Передача и возврат параметров
+;       8.2: Задание локальной и глобальной области видимости для имен переменных
+
+
+; Свойства языка:
+; 1: Объявление переменных - не явное
+; 2: Преобразование типов - не явное
+; 3: Оператор присваивания - многоцелевой, например, a, b = c, d
+; 4: Структуры, ограничивающие область видимости - подпрограммы и блочные операторы
+; 5: Маркер блочного оператора - не явный, например как в python
+; 6: Условные операторы - двух вариантный оператор и многовариантный switch-case
+; 7: Перегрузка подпрограмм - присутствует
+; 8: Передача параметров в подпрограмму - по значению и результату
+; 9: Допустимое место объявления подпрограмм - в начале программы
+
+
+; Exapmle 1:
+
+
+def processNode(node):
+    idAttr = node.getAttribute("id")
+    if idAttr:
+        print("Processing node with id:", idAttr)
+
+
+def processXML(xmlPath):
+    xmlDoc = read(xmlPath)                              
+    root = xmlDoc.root()  
+    nodes = root.children()                             
+
+    for node in nodes:
+        name = node.name
+        if name == "item":
+            processNode(node)
+        else
+            continue
+
+def main():
+    path = "file.xml"
+    processXML(path)
+
+; Exapmle 2:
+
+def processItem(node):
+    id, name = node.getAttribute("id"), node.getAttribute("name")
+    print("Item:", id, name)
+
+def processItem(node, count):
+    id, name = node.getAttribute("id"), node.getAttribute("name")
+    print("Item:", id, name, "Count:", count)
+
+def handleNode(node):
+    switch node.name():
+        case "item":
+            processItem(node)
+        case "category":
+            processCategory(node)
+        case default:
+            print("Unknown node:", node.name())
+
+; Exapmle 3:
+
+def addNewItem(parentNode, id, name)
+    newNode = createNode("item")
+    newNode.setAttribute("id", id)
+    newNode.setAttribute("name", name)
+    parentNode.appendChild(newNode)
+    return parentNode
+
+func modifyXML(path):
+    document = read(path)
+    root = document.root()
+    newRoot = addNewItem(root, 101, "New Item")
+    document.setRoot(newRoot)
+    write(document, path)
+
+; Types
+
+read(path) -> Document
+write(document) -> None
+
+type Document:
+    root: Node
+
+    root() -> Node
+
+type Node:
+    name: string
+    value: string
+    attributes: Dict[string, Attribute]
+
+    children: List[Node]
+
+    children() -> List[Node]
+    addChild(childNode) -> None
+    removeChild(childNode) -> None
+    getAttribute(attrName) -> Attribute
+    setAttribute(attrName, attrValue) -> None
+
+type Attribute:
+    name: string
+    value: string
+
+type string:
+    value: string
