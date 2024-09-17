@@ -26,7 +26,7 @@
 ; 2: Преобразование типов - не явное
 ; 3: Оператор присваивания - многоцелевой, например, a, b = c, d
 ; 4: Структуры, ограничивающие область видимости - подпрограммы и блочные операторы
-; 5: Маркер блочного оператора - не явный, например как в python
+; 5: Маркер блочного оператора - Явные, например, { } или begin end
 ; 6: Условные операторы - двух вариантный оператор и многовариантный switch-case
 ; 7: Перегрузка подпрограмм - присутствует
 ; 8: Передача параметров в подпрограмму - по значению и результату
@@ -36,62 +36,84 @@
 ; Exapmle 1:
 
 
-def processNode(node):
+def processNode(node) {
     idAttr = node.getAttribute("id")
-    if idAttr:
+    if idAttr and node.name == "item" {
         print("Processing node with id:", idAttr)
+    }
+}
 
 
-def processXML(xmlString):
+def processXML(xmlString) {
     xmlDoc = parseXML(xmlString)                              
     root = xmlDoc.root
     nodes = root.children()                             
 
-    for node in nodes:
+    for node in nodes {
         name = node.name
-        if name == "item":
+        if name == "item" {
             processNode(node)
-        else:
+        }
+        else {
             continue
+        }
+    }
+}
 
-def main():
+def main() {
     xmlString = read()
-    processXML(path)
+    try {
+        processXML(path)
+    }
+    except {
+        print("Error while processing XML: ", path)
+    }
+}
 
 ; Exapmle 2:
 
 
-def processItem(id, name, cost):
+def processItem(id, name, cost) {
     print("Item:", id, name, "Cost:", cost)
+}
 
-def processCategory(id, name):
+def processCategory(id, name) {
     print("Category:", id, name)
+}
 
-def processDefault(name):
+def processDefault(name) {
     print("Unknown node:", node)
+}
 
-def handleNode(node):
-    switch node.name:
-        case "item":
+def handleNode(node) {
+    switch node.name {
+        case "item" {
             id, cost = node.getAttribute("id"), node.getAttribute("cost")
             processItem(id, node.name, cost)
-        case "category":
+        }
+        case "category" {
             id = node.getAttribute("id")
             processCategory(id, node.name)
-        case default:
+        }
+        case default {
             processDefault(node.name)
+        }
+    }
+}
 
 ; Exapmle 3:
 
-def addNewItem(parentNode, id, name, value)
+def addNewItem(parentNode, id, name, value) {
     newNode = createNode(name)
     newNode.value = value
     newNode.setAttribute("id", id)
     parentNode.appendChild(newNode)
     return parentNode
+}
 
-func modifyXML(xmlString):
+func modifyXML(xmlString) {
     document = parseXML(xmlString)
     root = document.root
     document.root = addNewItem(root, "101", "Item", "New Item")
     write(document)
+}

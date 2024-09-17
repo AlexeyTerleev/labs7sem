@@ -1,14 +1,14 @@
-parser grammar ExprParser;
-options { tokenVocab=ExprLexer; }
+parser grammar XMLLangLexerParser;
+options { tokenVocab=XMLLangLexer; }
 
 program
     : (
-        stmt | funcdef
+        statement | funcDef
     )* EOF
     ;
 
-funcdef
-    : DEF ID parameters COLON block
+funcDef
+    : DEF ID parameters block
     ;
 
 parameters
@@ -20,26 +20,26 @@ typedargslist
     ;
 
 block
-    : INDENT stmt+ DEDENT
+    : INDENT statement+ DEDENT
     ;
     
-stmt
-    : simple_stmts
-    | compound_stmt
+statement
+    : simple_statements
+    | compound_statement
     ;
     
-simple_stmts
-    : simple_stmt (SEMI_COLON simple_stmt)* SEMI_COLON?
+simple_statements
+    : simple_statement (SEMI_COLON simple_statement)* SEMI_COLON?
     ;
     
-simple_stmt
+simple_statement
     : (
-        expr_stmt
-        | flow_stmt
+        expr_statement
+        | flow_statement
     )
     ;
     
-expr_stmt
+expr_statement
     : testlist_star_expr (ASSIGN testlist_star_expr)*
     ;
     
@@ -47,39 +47,39 @@ testlist_star_expr
     : test (COMMA test)* COMMA?
     ;
     
-flow_stmt
+flow_statement
     : BREAK
     | CONTINUE
     | RETURN testlist?
     | RAISE test?
     ;
     
-compound_stmt
-    : if_stmt
-    | while_stmt
-    | for_stmt
-    | try_stmt
-    | funcdef
-    | switch_stmt
+compound_statement
+    : if_statement
+    | while_statement
+    | for_statement
+    | try_statement
+    | funcDef
+    | switch_statement
     ;
     
-if_stmt
-    : IF test COLON block (ELSE COLON block)?
+if_statement
+    : IF test block (ELSE block)?
     ;
 
-while_stmt
-    : WHILE test COLON block
+while_statement
+    : WHILE test block
     ;
 
-for_stmt
-    : FOR exprlist IN testlist COLON block
+for_statement
+    : FOR exprlist IN testlist block
     ;
 
-try_stmt
+try_statement
     : (
-        TRY COLON block (
-            (except_clause COLON block)+ (FINALLY COLON block)?
-            | FINALLY COLON block
+        TRY block (
+            (except_clause block)+ (FINALLY block)?
+            | FINALLY block
         )
     )
     ;
@@ -88,12 +88,12 @@ except_clause
     : EXCEPT test?
     ;
 
-switch_stmt
-    : SWITCH test COLON INDENT case_block+ DEDENT
+switch_statement
+    : SWITCH test INDENT case_block+ DEDENT
     ;
 
 case_block
-    : CASE pattern COLON block
+    : CASE pattern block
     ;
 
 pattern
@@ -106,15 +106,11 @@ closed_pattern
     ;
 
 literal_pattern
-    : real_number
-    | strings
+    : NUMBER
+    | STRING+
     | NONE
     | TRUE
     | FALSE
-    ;
-
-real_number
-    : NUMBER
     ;
 
 value_pattern
@@ -186,8 +182,4 @@ arglist
 
 argument
     : test
-    ;
-
-strings
-    : STRING+
     ;
