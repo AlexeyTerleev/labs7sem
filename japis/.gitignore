@@ -1,0 +1,14 @@
+# Ignore Python virtual environment folder
+venv/
+
+# Ignore ANTLR generated files
+.antlr/
+
+# Ignore Python bytecode cache
+__pycache__/
+
+# Optionally, ignore compiled Python files (*.pyc)
+*.pyc
+
+
+antlr-4.13.2-complete.jar

@@ -1,39 +1,3 @@
-; Язык для работы с xml данными
-; 1: Встроенные типы: document, node, attribute
-; 2: Встроенные функции поиска и преобразования
-
-
-; Требования к разрабатываемому языку
-; 1: Встроенные типы не менее трех
-; 2: Возможность инициализация переменных всех типов при объявлении: <имя_переменной> = <выражение>
-;       2.1: Инициализирующее выражение может быть константным
-; 3: Встроенные операции не менее 10 штук
-; 4: Встроенные функции
-;       4.1: Встроенные функции ввода\вывода для работы со встроенными типами read() write()
-; 5: Использование сложных выражений (составных и со скобками)
-; 6: Блочный оператор
-; 7: Управляющие структуры
-;       7.1: Условный оператор (if-then-else)
-;       7.2: Операторы цикла (while и until)
-;       7.3: Оператор цикла с итерациями (for)
-; 8: Пользовательские подпрограммы
-;       8.1: Передача и возврат параметров
-;       8.2: Задание локальной и глобальной области видимости для имен переменных
-
-
-; Свойства языка:
-; 1: Объявление переменных - не явное
-; 2: Преобразование типов - не явное
-; 3: Оператор присваивания - многоцелевой, например, a, b = c, d
-; 4: Структуры, ограничивающие область видимости - подпрограммы и блочные операторы
-; 5: Маркер блочного оператора - Явные, например, { } или begin end
-; 6: Условные операторы - двух вариантный оператор и многовариантный switch-case
-; 7: Перегрузка подпрограмм - присутствует
-; 8: Передача параметров в подпрограмму - по значению и результату
-; 9: Допустимое место объявления подпрограмм - в начале программы
-
-
-; Exapmle 1:
 
 
 def processNode(node) {
@@ -70,18 +34,16 @@ def main() {
     }
 }
 
-; Exapmle 2:
-
 
 def processItem(id, name, cost) {
     print("Item:", id, name, "Cost:", cost)
 }
 
-def processCategory(id, name) {
+def processItem(id, name) {
     print("Category:", id, name)
 }
 
-def processDefault(name) {
+def processItem(name) {
     print("Unknown node:", node)
 }
 
@@ -93,15 +55,14 @@ def handleNode(node) {
         }
         case "category" {
             id = node.getAttribute("id")
-            processCategory(id, node.name)
+            processItem(id, node.name)
         }
         case default {
-            processDefault(node.name)
+            processItem(node.name)
         }
     }
 }
 
-; Exapmle 3:
 
 def addNewItem(parentNode, id, name, value) {
     newNode = createNode(name)
@@ -111,7 +72,7 @@ def addNewItem(parentNode, id, name, value) {
     return parentNode
 }
 
-func modifyXML(xmlString) {
+def modifyXML(xmlString) {
     document = parseXML(xmlString)
     root = document.root
     document.root = addNewItem(root, "101", "Item", "New Item")
