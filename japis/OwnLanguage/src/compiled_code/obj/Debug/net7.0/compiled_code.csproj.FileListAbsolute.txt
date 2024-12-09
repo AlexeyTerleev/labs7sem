@@ -1,0 +1,15 @@
+/home/user/OwnLanguage/src/compiled_code/bin/Debug/net7.0/compiled_code
+/home/user/OwnLanguage/src/compiled_code/bin/Debug/net7.0/compiled_code.deps.json
+/home/user/OwnLanguage/src/compiled_code/bin/Debug/net7.0/compiled_code.runtimeconfig.json
+/home/user/OwnLanguage/src/compiled_code/bin/Debug/net7.0/compiled_code.dll
+/home/user/OwnLanguage/src/compiled_code/bin/Debug/net7.0/compiled_code.pdb
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/compiled_code.csproj.AssemblyReference.cache
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/compiled_code.GeneratedMSBuildEditorConfig.editorconfig
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/compiled_code.AssemblyInfoInputs.cache
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/compiled_code.AssemblyInfo.cs
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/compiled_code.csproj.CoreCompileInputs.cache
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/compiled_code.dll
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/refint/compiled_code.dll
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/compiled_code.pdb
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/compiled_code.genruntimeconfig.cache
+/home/user/OwnLanguage/src/compiled_code/obj/Debug/net7.0/ref/compiled_code.dll

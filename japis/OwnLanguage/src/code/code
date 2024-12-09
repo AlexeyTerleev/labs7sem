@@ -1,0 +1,20 @@
+def process(el1, el2)
+{
+    newSet = Set()
+    newSet.add(el1)
+    newSet.add(el2)
+    return newSet
+}
+
+def main()
+{
+    el1 = Element("banana")
+    el2 = Element("apple")
+
+    mySet = process(el1, el2)
+
+    for element in mySet
+    {
+        print(element)
+    }
+}

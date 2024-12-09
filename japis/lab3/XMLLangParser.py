@@ -743,10 +743,8 @@ class XMLLangParser ( Parser ):
         def expr_statement(self):
             return self.getTypedRuleContext(XMLLangParser.Expr_statementContext,0)
 
-
         def flow_statement(self):
             return self.getTypedRuleContext(XMLLangParser.Flow_statementContext,0)
-
 
         def getRuleIndex(self):
             return XMLLangParser.RULE_simple_statement

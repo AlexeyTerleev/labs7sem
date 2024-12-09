@@ -1,15 +1,16 @@
 import sys
 from antlr4 import *
-from XMLLangLexer import XMLLangLexer  # Lexer
-from XMLLangParser import XMLLangParser  # Parser
+from XMLLangLexer import XMLLangLexer
+from XMLLangParser import XMLLangParser
 from antlr4.error.ErrorListener import ConsoleErrorListener
+from semantic_analizer import SemanticAnalyzer, SemanticError
 
-# Custom error listener to print syntax errors
+
 class CustomErrorListener(ConsoleErrorListener):
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
-        # ANSI escape code for red text: \033[31m
-        # Reset color to default: \033[0m
         print(f"\033[31mОшибка на строке {line}:{column} - {msg}\033[0m")
+
+
 
 def main(input_file):
     input_stream = FileStream(input_file, encoding='utf-8') 
@@ -21,7 +22,13 @@ def main(input_file):
     parser.addErrorListener(CustomErrorListener())
 
     tree = parser.program()  
-    print(tree.toStringTree(recog=parser))  
+    
+    semantic_analyzer = SemanticAnalyzer()
+    try:
+        semantic_analyzer.analyze(tree)
+    except SemanticError as e:
+        print(f"Semantic error: {e}")
+
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

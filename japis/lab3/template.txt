@@ -11,7 +11,7 @@ def processNode(node) {
 def processXML(xmlString) {
     xmlDoc = parseXML(xmlString)                              
     root = xmlDoc.root
-    nodes = root.childrens()                             
+    nodes = root.children()                             
 
     for node in nodes {
         if name == "item" {

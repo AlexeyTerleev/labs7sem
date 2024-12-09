@@ -1,0 +1,191 @@
+/* Importing Inter Font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.file-uploader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 5px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.file-uploader .uploader-header {
+  display: flex;
+  padding: 16px 20px;
+  color: #2c3e50;
+  background: #f9f9f9;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+  justify-content: space-between;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.uploader-header .uploader-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.uploader-header .file-completed-status {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #666666;
+}
+
+.file-uploader .file-list {
+  list-style: none;
+  width: 100%;
+  padding: 20px 0;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-color: #ccc #f0f0f0;
+  scrollbar-width: thin;
+}
+
+.file-uploader .file-list:has(li) {
+  padding: 0;
+}
+
+.file-list .file-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.file-list .file-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.file-list .file-item:last-child {
+  margin-bottom: 0px;
+}
+
+.file-list .file-item .file-extension {
+  height: 50px;
+  width: 50px;
+  color: #ffffff;
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #007aff;
+}
+
+.file-list .file-item .file-content-wrapper {
+  flex: 1;
+}
+
+.file-list .file-item .file-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.file-list .file-item .file-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.file-list .file-item .file-info {
+  display: flex;
+  gap: 5px;
+}
+
+.file-list .file-item .file-info small {
+  color: #8a8a8a;
+  margin-top: 5px;
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.file-list .file-item .file-info .file-status {
+  color: #007aff;
+}
+
+.file-list .file-item .cancel-button {
+  align-self: center;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #8a8a8a;
+  transition: color 0.2s ease;
+}
+
+.file-list .file-item .cancel-button:hover {
+  color: #ff3b30;
+}
+
+.file-list .file-item .file-progress-bar {
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 10px;
+  background: #eaeaea;
+}
+
+.file-list .file-item .file-progress-bar .file-progress {
+  width: 0%;
+  height: inherit;
+  border-radius: inherit;
+  background: #007aff;
+}
+
+.file-uploader .file-upload-box {
+  width: 100%;
+  border-radius: 10px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #d1d1d1;
+  background: #f8f8f8;
+  transition: all 0.2s ease;
+}
+
+.file-uploader .file-upload-box.active {
+  border: 2px solid #007aff;
+  background: #eaf4ff;
+}
+
+.file-uploader .file-upload-box .box-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #8a8a8a;
+  text-align: center;
+}
+
+.file-uploader .file-upload-box.active .box-title {
+  color: #007aff;
+}
+
+.file-upload-box .box-title .file-browse-button {
+  color: #007aff;
+  cursor: pointer;
+}
+
+.file-upload-box .box-title .file-browse-button:hover {
+  text-decoration: underline;
+}
