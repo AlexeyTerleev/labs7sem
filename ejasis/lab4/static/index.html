@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="static/static/src/index.css">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <script src="static/static/src/index.js" defer></script>
+  <script type="module" src="static/static/src/mermaid.js" defer></script>
+</head>
+
+<body>
+
+  <main>
+    <section id="input-output-section">
+      <div id="user-input">
+        <textarea id="user-input-field" placeholder="Введите текст здесь..."></textarea>
+        <div id="input-buttons">
+          <button id="show-frequency-info-list">Cписок слов</button>
+          <button id="translate-button">Перевести</button>
+        </div>
+      </div>
+      <div id="user-output-box">
+        <p id="user-output-text"></p>
+        <div id="output-buttons">
+          <button id="show-frequency-info-list-out">Список слов</button>
+          <button id="show-synt-tree">Отобразить дерево</button>
+        </div>
+      </div>
+    </section>
+    <div id="dialog-cover">
+      <div id="dialog-window">
+        <h2 id="dialog-title">Информация о тексте</h2>
+        <ul id="words-info-list"></ul>
+        <button id="dialog-exit-button">Закрыть</button>
+      </div>
+    </div>
+    <div id="dialog-cover-tree">
+      <div id="dialog-window-tree">
+        <h2 id="dialog-title-tree">Информация о тексте</h2>
+        <div id="mermaid"></div>
+        <div id="tree-buttons">
+          <button id="previous-tree">Предыдущий</button>
+          <button id="next-tree">Следующий</button>
+          <button id="dialog-exit-button-tree">Закрыть</button>
+        </div>
+      </div>
+    </div>
+    <div id="save-txt-file" class="print-to-pdf">Сохранить Отчет</div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js" defer></script>
+</body>
+
+</html>
